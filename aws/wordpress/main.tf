@@ -42,3 +42,23 @@ resource "aws_iam_role" "s3_access_role" {
 }
 EOF
 }
+
+# ----- VPC -----
+resource "aws_vpc" "wp_vpc" {
+  cidr_block = "${var.vpc_cidr}"
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+
+  tags = {
+    Name = "wp_vpc"
+  }
+}
+
+# ----- internet gateway -----
+resource "aws_internet_gateway" "wp_internet_gateway" {
+  vpc_id = "${aws_vpc.wp_vpc.id}"
+
+  tags = {
+    Name = "wp_igw"
+  }
+}
