@@ -17,11 +17,11 @@ resource "aws_iam_role_policy" "s3_access_policy" {
   policy = <<EOF
 {
     "Version": "2012-10-17",
-    "Statement": [
+    "Statement": [{
       "Effect": "Allow",
       "Action": "s3:*",
       "Resource": "*"
-    ]
+    }]
 }
 EOF
 }
@@ -31,14 +31,14 @@ resource "aws_iam_role" "s3_access_role" {
   assume_role_policy = <<EOF
 {
     "Version": "2012-10-17",
-    "Statement": [
+    "Statement": [{
       "Action": "sts:AssumeRole",
       "Principle": {
         "Service": "ec2.amazonaws.com"
       },
       "Effect": "Allow",
       "Sid": ""
-    ]
+    }]
 }
 EOF
 }
